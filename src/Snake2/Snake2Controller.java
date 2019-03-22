@@ -1,6 +1,7 @@
 package Snake2;
 
 
+
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -13,17 +14,17 @@ public class Snake2Controller {
 	private Pane paneCancha;
 	private serpiente snake;
 	private SerpienteAnimationTimer miTimer;
-
-
+	private Comida comida;
 
 	@FXML
 	public void initialize() {
 		//es una especia,constructor se ejecuta con el programa
 		System.out.println("inicando programa");
 		snake = new serpiente();
-
+		comida = new Comida();
 
 		snake.addserpiente(paneCancha);
+		paneCancha.getChildren().add(comida);
 		// obtiene lsita de hijos(elementos) y los agrega un objeto
 
 		Rectangle clip = new Rectangle(0, 0, 0, 0);
@@ -31,7 +32,7 @@ public class Snake2Controller {
 		clip.heightProperty().bind(paneCancha.heightProperty());
 		paneCancha.setClip(clip);
 
-		miTimer = new SerpienteAnimationTimer(snake, paneCancha);
+		miTimer = new SerpienteAnimationTimer(snake, paneCancha,comida);
 	}
 	@FXML
 	public void botonSalir() {
@@ -44,6 +45,9 @@ public class Snake2Controller {
 	public void botonIniciar() {
 		System.out.println("iniciaste la pelota ");
 		miTimer.start();
+		comida.aparecer(paneCancha.getWidth(), paneCancha.getHeight());
+
+		//ran.nextDouble(0,paneCancha.getWidth())
 	}
 	@FXML
 	public void keyMoveHnd(KeyEvent ke)
@@ -76,12 +80,9 @@ public class Snake2Controller {
 			System.out.println("KeyMoveHnd:" + ke.getCode() );
 			break;
 		}
-		System.out.println(dir);
 		ke.consume();
-		System.out.println();
 		if(  dir !=  snake.getRetro()) {
-			System.out.println("este es la direccion de ingreso   "+dir);
-			System.out.println("este es el retro "+snake.getRetro());
+
 			snake.setDir(dir);
 			snake.setRetro(dir);
 		}
