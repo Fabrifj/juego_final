@@ -1,5 +1,6 @@
 package Snake2;
 
+import javafx.geometry.Bounds;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 
@@ -7,10 +8,14 @@ public class serpiente {
 	private Cuerpo cuerpo[];
 	private int dir;
 	private int retro;
+	private int puntaje;
+	private boolean choque;
 	
 	public serpiente() {
-		
-		dir = 0;
+		this.choque=false;
+
+		this.puntaje = 0;
+		this.dir = 0;
 		cuerpo = new Cuerpo[5];
 		retro= 3-dir;
 		
@@ -78,5 +83,24 @@ public class serpiente {
 	}
 	
 
+	public Bounds getcabeza() {
+		return cuerpo[0].getBoundsInParent();
+		
+	}
 
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
+	}
+
+	public boolean colision_cuerpo() {
+		if(cuerpo[0].getBoundsInParent().intersects(cuerpo[4].getBoundsInParent()))
+			choque = true;
+		return choque;
+			
+	}
+	
 }

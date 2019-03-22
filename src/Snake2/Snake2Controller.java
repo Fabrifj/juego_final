@@ -47,7 +47,6 @@ public class Snake2Controller {
 		miTimer.start();
 		comida.aparecer(paneCancha.getWidth(), paneCancha.getHeight());
 
-		//ran.nextDouble(0,paneCancha.getWidth())
 	}
 	@FXML
 	public void keyMoveHnd(KeyEvent ke)

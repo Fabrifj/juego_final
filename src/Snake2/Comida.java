@@ -19,8 +19,8 @@ public class Comida extends Circle {
 		int a= (int) d;
 		int h= (int) e;
 		
-		this.setCenterX(ran.nextInt((int)(a-2*this.getRadius()))+(int)this.getRadius());
-		this.setCenterY(ran.nextInt((int)(h-2*this.getRadius()))+(int)this.getRadius());
+		this.setCenterX(ran.nextInt((int)(a-3*this.getRadius()))+(int)2*this.getRadius());
+		this.setCenterY(ran.nextInt((int)(h-3*this.getRadius()))+(int)2*this.getRadius());
 
 	}
 }
