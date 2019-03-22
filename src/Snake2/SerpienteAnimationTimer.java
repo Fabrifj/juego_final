@@ -19,6 +19,7 @@ public class SerpienteAnimationTimer extends AnimationTimer {
 	public void handle(long now) {
 		this.mov_serpiente();
 		this.colision_comida();
+		this.colision_serpiente();
 	}
 
 	
@@ -32,7 +33,9 @@ public class SerpienteAnimationTimer extends AnimationTimer {
 	private void colision_serpiente() {
 		boolean choque = false;
 		choque = snake.colision_cuerpo();
-		if(!choque) {
+		choque = !(snake.getcabeza().intersects(30, 30, paneCancha.getWidth()-60, paneCancha.getHeight()-60));
+		
+		if(choque) {
 			this.stop();
 		}
 	}
@@ -45,4 +48,5 @@ public class SerpienteAnimationTimer extends AnimationTimer {
 			c=1;
 		}	
 	}
+
 }

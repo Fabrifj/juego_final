@@ -27,13 +27,11 @@ public class serpiente {
 		for(int a=1;a<5;a++) {
 
 				cuerpo[a]=new Cuerpo();
-				cuerpo[a].setCenterX(100);
-				cuerpo[a].setCenterY(100);
+				cuerpo[a].setCenterX(-100);
+				cuerpo[a].setCenterY(-100);
 				cuerpo[a].setRadius(10);
 		}
-		cuerpo[1].setCenterX(50);
-		cuerpo[1].setCenterY(50);
-		
+
 	}
 
 	public void moverse() {
@@ -88,6 +86,7 @@ public class serpiente {
 		
 	}
 
+
 	public int getPuntaje() {
 		return puntaje;
 	}
@@ -97,8 +96,12 @@ public class serpiente {
 	}
 
 	public boolean colision_cuerpo() {
-		if(cuerpo[0].getBoundsInParent().intersects(cuerpo[4].getBoundsInParent()))
-			choque = true;
+		for(int a =3; a<4;a++) {
+			if(cuerpo[0].intersects(cuerpo[a].getBoundsInLocal())) {
+				System.out.println("hay choque");
+				choque = true;
+			}
+		}
 		return choque;
 			
 	}
