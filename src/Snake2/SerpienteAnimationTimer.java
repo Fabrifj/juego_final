@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
 
 public class SerpienteAnimationTimer extends AnimationTimer {
+	private	 int c=1;
 
 	private serpiente snake;
 	
@@ -15,6 +16,13 @@ public class SerpienteAnimationTimer extends AnimationTimer {
 	@Override
 	public void handle(long now) {
 
-		snake.moverse();
+		if(c>=1) {
+			c--;
+		}
+		else {
+			snake.moverse();
+			c=1;
+		}
 	}
+
 }
