@@ -10,25 +10,26 @@ public class serpiente {
 	private int retro;
 	private int puntaje;
 	private boolean choque;
+	private int tam;
 	
 	public serpiente() {
 		this.choque=false;
-
+		this.tam = 4;
 		this.puntaje = 0;
 		this.dir = 0;
-		cuerpo = new Cuerpo[5];
+		cuerpo = new Cuerpo[50];
 		retro= 3-dir;
 		
 		cuerpo[0]=new Cuerpo();
 		cuerpo[0].setCenterX(100);
 		cuerpo[0].setCenterY(100);
-		cuerpo[0].setRadius(15);
+		cuerpo[0].setRadius(12);
 		
-		for(int a=1;a<5;a++) {
+		for(int a=1;a<50;a++) {
 
 				cuerpo[a]=new Cuerpo();
-				cuerpo[a].setCenterX(-100);
-				cuerpo[a].setCenterY(-100);
+				cuerpo[a].setCenterX(0);
+				cuerpo[a].setCenterY(0);
 				cuerpo[a].setRadius(10);
 		}
 
@@ -52,8 +53,8 @@ public class serpiente {
 		case 3:
 			cuerpo[0].mover(cuerpo[0].getCenterX()-1,cuerpo[0].getCenterY());
 		}
-		int m =3;
-		for(int n=4; n>=1;n--) {
+		int m =tam-1;
+		for(int n=tam; n>=1;n--) {
 			cuerpo[n].mover(cuerpo[m].getx5(),cuerpo[m].gety5());
 			m--;
 		}
@@ -85,6 +86,7 @@ public class serpiente {
 		return cuerpo[0].getBoundsInParent();
 		
 	}
+	boolean choque1 = false;
 
 
 	public int getPuntaje() {
@@ -93,13 +95,15 @@ public class serpiente {
 
 	public void setPuntaje(int puntaje) {
 		this.puntaje = puntaje;
+		this.tam += 1;
 	}
 
 	public boolean colision_cuerpo() {
-		for(int a =3; a<4;a++) {
+		for(int a =4; a<=tam;a++) {
 			if(cuerpo[0].intersects(cuerpo[a].getBoundsInLocal())) {
-				System.out.println("hay choque");
+				System.out.println("hay choque "+a);
 				choque = true;
+				break;
 			}
 		}
 		return choque;

@@ -31,14 +31,17 @@ public class SerpienteAnimationTimer extends AnimationTimer {
 	}
 
 	private void colision_serpiente() {
-		boolean choque = false;
-		choque = snake.colision_cuerpo();
-		choque = !(snake.getcabeza().intersects(30, 30, paneCancha.getWidth()-60, paneCancha.getHeight()-60));
-		
-		if(choque) {
+		boolean choque1 = false;
+		boolean choque2 = false;
+
+		choque1 = snake.colision_cuerpo();
+		choque2 = !(snake.getcabeza().intersects(30, 30, paneCancha.getWidth()-60, paneCancha.getHeight()-60));
+		if(choque1 || choque2) {
+			
 			this.stop();
 		}
 	}
+	
 	private void mov_serpiente() {
 		if(c>=1) {
 			c--;
